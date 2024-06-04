@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">DND</string>
     <string name="tittle">DND</string>
-    <string name="instruction">choisissez le dé que vous voulez lancer</string>
-    <string name="lancer">lancer</string>
-    <string name="resultat">le résultat est:</string>
-    <string name="pile">Pile</string>
+    <string name="instruction">Choose the dice that you want.</string>
+    <string name="lancer">Roll</string>
+    <string name="resultat">The resul is:</string>
+    <string name="pile">Tail</string>
     <string name="face">Face</string>
 </resources>

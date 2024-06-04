@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DND</string>
+    <string name="tittle">DND</string>
+    <string name="instruction">Choisissez le dé que vous voulez lancer.</string>
+    <string name="lancer">Lancer</string>
+    <string name="resultat">Le résultat est:</string>
+    <string name="pile">Pile</string>
+    <string name="face">Face</string>
+</resources>
