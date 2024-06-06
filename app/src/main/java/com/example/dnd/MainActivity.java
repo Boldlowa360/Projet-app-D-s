@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ActivityMainBinding binding;
     private static final String[] paths = {"Coin", "D4", "D6","D8","D10","D12","D20"};
     int nbFaces;
+    List<Dices> listLancés = new ArrayList<>();
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-        binding.resultat.setText("");
         switch (position) {
             case 0:
                 //Coin
@@ -90,34 +90,48 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         binding.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Vérification si le résultat viens d'une pièce de monnaie
                 int result = lancer(nbFaces);
                 if(nbFaces == 2){
-                    binding.resultat.setTextColor(getColor(R.color.black));
                     switch (result){
                         case 1:
-                            binding.resultat.setText(R.string.pile);
+                            //Lancer de la pièce resultant Pile
+                            Snackbar.make(binding.getRoot(),getString(R.string.snackMessage) +"  "+ getString(R.string.pile),0).show();
+                            Dices pile = new Dices();
+                            pile.faces = 2;
+                            pile.image = "R.drawable.coin";
+                            pile.resultat = "R.string.pile";
+                            listLancés.add(pile);
                             break;
                         case 2:
-                            binding.resultat.setText(R.string.face);
+                            //Lancer de la pièce resultant Face
+                            Snackbar.make(binding.getRoot(),getString(R.string.snackMessage) +"  "+ getString(R.string.face),0).show();
+                            Dices face = new Dices();
+                            face.faces = 2;
+                            face.image = "R.drawable.coin";
+                            face.resultat = "R.string.pile";
+                            listLancés.add(face);
                             break;
                     }
-
                 }
-                else{
-                    binding.resultat.setText(result+"");
-                    if(result == 1){
-                        binding.resultat.setTextColor(getColor(R.color.critical1));
-                    }else if(result == nbFaces){
-                        binding.resultat.setTextColor(getColor(R.color.nat20));
-                    }
-                    else{
-                        binding.resultat.setTextColor(getColor(R.color.black));
-                    }
-                }
+                //else{
+                    //Ajustement de l'affichage en fonction de si le résultat est 1 ou 20
+                    //Afin de montrer un echec critique avec un ou une réussite avec un 20
+                    //binding.resultat.setText(result+"");
+                    //if(result == 1){
+                    //    binding.resultat.setTextColor(getColor(R.color.critical1));
+                    //}else if(result == nbFaces){
+                    //    binding.resultat.setTextColor(getColor(R.color.nat20));
+                    //}
+                    //else{
+                    //    binding.resultat.setTextColor(getColor(R.color.black));
+                    //}
+                //}
 
             }
         });
     }
+    //Logique de calcul pour la face aléatoire du dé en fonction du nombre de faces
     public int lancer(int nbFaces){
         int result = new Random().nextInt(nbFaces)+1;
         return result;
