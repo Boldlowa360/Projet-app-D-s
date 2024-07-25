@@ -6,4 +6,6 @@
     <string name="resultat">The resul is:</string>
     <string name="pile">Tail</string>
     <string name="face">Face</string>
+    <string name="snackMessage">Result:  </string>
+    <string name="throw_history">Throw history</string>
 </resources>

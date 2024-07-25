@@ -7,4 +7,6 @@
     <string name="resultat">Le résultat est:</string>
     <string name="pile">Pile</string>
     <string name="face">Face</string>
+    <string name="snackMessage">Resultat:  </string>
+    <string name="throw_history">Historique de lancés</string>
 </resources>
