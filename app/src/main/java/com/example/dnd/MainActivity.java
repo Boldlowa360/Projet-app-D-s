@@ -1,6 +1,7 @@
 package com.example.dnd;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         switch (position) {
             case 0:
                 //Coin
-                binding.imageView.setImageResource(R.drawable.coin);
+                binding.imageView.setImageResource(R.drawable.Coin);
                 nbFaces = 2;
                 break;
             case 1:
@@ -96,7 +97,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     switch (result){
                         case 1:
                             //Lancer de la pièce resultant Pile
-                            Snackbar.make(binding.getRoot(),getString(R.string.snackMessage) +"  "+ getString(R.string.pile),0).show();
+                            Snackbar snackbar = Snackbar.make(binding.getRoot(),getString(R.string.snackMessage) +"  "+ getString(R.string.pile),0);
+                            snackbar.setBackgroundTint(getColor(R.color.grey));
+                            snackbar.show();
                             Dices pile = new Dices();
                             pile.faces = 2;
                             pile.image = "R.drawable.coin";
@@ -105,7 +108,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             break;
                         case 2:
                             //Lancer de la pièce resultant Face
-                            Snackbar.make(binding.getRoot(),getString(R.string.snackMessage) +"  "+ getString(R.string.face),0).show();
+                            Snackbar snackbar1 = Snackbar.make(binding.getRoot(),getString(R.string.snackMessage) +"  "+ getString(R.string.face),0);
+                            snackbar1.setBackgroundTint(getColor(R.color.grey));
+                            snackbar1.show();
                             Dices face = new Dices();
                             face.faces = 2;
                             face.image = "R.drawable.coin";
@@ -113,7 +118,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             listLancés.add(face);
                             break;
                     }
+                }else{
+                    Snackbar snackbar = Snackbar.make(binding.getRoot(),getString(R.string.resultat)+"  "+result,0);
+                    if(result == 1){
+                        snackbar.setBackgroundTint(getColor(R.color.critical1));
+                    }else if (result == nbFaces){
+                        snackbar.setBackgroundTint(getColor(R.color.nat20));
+                    }else{
+                        snackbar.setBackgroundTint(getColor(R.color.grey));
+                    }
+
+                    snackbar.show();
+                    Dices D = new Dices();
+                    D.faces = nbFaces;
+                    D.resultat = result+"";
+                    D.image = "R.drawable.d"+nbFaces;
+                    listLancés.add(D);
                 }
+                Log.i("TESTLIST",listLancés.size()+"");
                 //else{
                     //Ajustement de l'affichage en fonction de si le résultat est 1 ou 20
                     //Afin de montrer un echec critique avec un ou une réussite avec un 20

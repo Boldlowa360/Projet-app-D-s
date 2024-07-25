@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="nat20">#23B624</color>
     <color name="critical1">#B62323</color>
+    <color name="grey">#4E4949</color>
 </resources>
